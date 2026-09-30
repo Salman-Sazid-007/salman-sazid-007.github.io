@@ -10,13 +10,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  /* Professional Color Palette */
   --bg-primary: #f8fafc;
   --bg-secondary: #ffffff;
   --text-primary: #0f172a;
   --text-secondary: #475569;
   --border-color: #e2e8f0;
-  --accent-color: #2563eb; /* Corporate Blue */
+  --accent-color: #2563eb; 
   --accent-hover: #1d4ed8;
   --accent-light: #eff6ff;
   --font-main: 'Inter', sans-serif;
@@ -39,13 +38,25 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { background: var(--bg-primary); color: var(--text-primary); font-family: var(--font-main); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+body { background: var(--bg-primary); color: var(--text-primary); font-family: var(--font-main); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 a { color: var(--accent-color); text-decoration: none; transition: color 0.2s; }
 a:hover { color: var(--accent-hover); }
 
+/* Scroll Animation Classes */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: opacity, transform;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Layout */
-.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-section { padding: 80px 0; border-bottom: 1px solid var(--border-color); }
+.container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+section { padding: 90px 0; border-bottom: 1px solid var(--border-color); }
 section:last-of-type { border-bottom: none; }
 h1, h2, h3, h4 { color: var(--text-primary); font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
 h2 { font-size: 2rem; margin-bottom: 32px; letter-spacing: -0.02em; }
@@ -61,31 +72,23 @@ nav .container { display: flex; justify-content: space-between; align-items: cen
 .nav-links a:hover { color: var(--text-primary); }
 
 /* Buttons */
-.btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; border-radius: var(--radius); font-weight: 500; font-size: 0.95rem; transition: all 0.2s; cursor: pointer; border: 1px solid transparent; }
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 28px; border-radius: var(--radius); font-weight: 500; font-size: 1rem; transition: all 0.2s; cursor: pointer; border: 1px solid transparent; }
 .btn-primary { background: var(--accent-color); color: #ffffff; box-shadow: var(--shadow-sm); }
-.btn-primary:hover { background: var(--accent-hover); color: #ffffff; transform: translateY(-1px); }
+.btn-primary:hover { background: var(--accent-hover); color: #ffffff; transform: translateY(-2px); box-shadow: var(--shadow-md); }
 .btn-outline { background: transparent; border-color: var(--border-color); color: var(--text-primary); }
-.btn-outline:hover { border-color: var(--accent-color); color: var(--accent-color); }
+.btn-outline:hover { border-color: var(--accent-color); color: var(--accent-color); transform: translateY(-2px); }
 
-/* Hero Section */
-.hero { padding: 100px 0 80px; }
-.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-.hero-content h1 { font-size: 3.5rem; letter-spacing: -0.03em; margin-bottom: 24px; }
-.hero-content .lead { font-size: 1.25rem; margin-bottom: 32px; max-width: 540px; }
-.hero-actions { display: flex; gap: 16px; }
-
-/* Minimalist UI Wireframe */
-.ui-mockup { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 24px; padding: 16px; box-shadow: var(--shadow-md); width: 100%; max-width: 320px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; position: relative; overflow: hidden; }
-.ui-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--border-color); }
-.ui-line { height: 8px; background: var(--border-color); border-radius: 4px; }
-.ui-box { background: var(--accent-light); border-radius: 8px; height: 120px; display: flex; align-items: center; justify-content: center; color: var(--accent-color); font-weight: 600; font-size: 0.85rem; }
-.ui-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.ui-item { height: 80px; background: var(--bg-primary); border-radius: 8px; border: 1px solid var(--border-color); }
+/* Hero Section (Centered) */
+.hero { padding: 120px 0 100px; text-align: center; }
+.hero-content { max-width: 800px; margin: 0 auto; }
+.hero-content h1 { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -0.03em; margin-bottom: 24px; }
+.hero-content .lead { font-size: 1.25rem; margin-bottom: 40px; }
+.hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
 /* Cards & Grid */
 .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-.card { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow-sm); transition: box-shadow 0.2s; }
-.card:hover { box-shadow: var(--shadow-md); }
+.card { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow-sm); transition: box-shadow 0.3s, transform 0.3s; }
+.card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
 
 /* Timeline (Experience) */
 .timeline { position: relative; border-left: 2px solid var(--border-color); padding-left: 32px; margin-left: 16px; }
@@ -107,12 +110,15 @@ nav .container { display: flex; justify-content: space-between; align-items: cen
 .edu-table tr:last-child td { border-bottom: none; }
 .result-badge { display: inline-block; background: var(--bg-primary); padding: 4px 12px; border-radius: 4px; font-weight: 600; border: 1px solid var(--border-color); }
 
+/* Contact Section */
+.contact-box { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 48px; text-align: center; }
+.contact-links { display: flex; justify-content: center; gap: 24px; margin-top: 24px; flex-wrap: wrap; }
+.contact-item { font-size: 1.1rem; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; }
+
 /* Footer */
 footer { text-align: center; padding: 40px 0; color: var(--text-secondary); font-size: 0.9rem; border-top: 1px solid var(--border-color); }
 
 @media (max-width: 768px) {
-  .hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-  .hero-actions { justify-content: center; }
   .nav-links { display: none; }
   .edu-table, .edu-table tbody, .edu-table tr, .edu-table td, .edu-table th { display: block; }
   .edu-table thead { display: none; }
@@ -130,38 +136,24 @@ footer { text-align: center; padding: 40px 0; color: var(--text-secondary); font
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
-      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
     </div>
   </div>
 </nav>
 
-<section class="hero">
-  <div class="container hero-grid">
+<section class="hero fade-in">
+  <div class="container">
     <div class="hero-content">
       <h1>Engineering seamless digital experiences.</h1>
       <p class="lead">I am a Software Engineer and UI/UX Specialist with over 2 years of remote experience developing scalable mobile and e-commerce applications.</p>
       <div class="hero-actions">
-        <a href="mailto:salmansazid67@gmail.com" class="btn btn-primary">Contact Me</a>
-        <a href="https://github.com/salman-sazid-007" target="_blank" class="btn btn-outline">GitHub Profile</a>
-      </div>
-    </div>
-    <div class="ui-mockup">
-      <div class="ui-header">
-        <div class="ui-line" style="width: 40px;"></div>
-        <div class="ui-line" style="width: 20px; border-radius: 50%;"></div>
-      </div>
-      <div class="ui-box">E-Commerce UI/UX</div>
-      <div class="ui-grid">
-        <div class="ui-item"></div>
-        <div class="ui-item"></div>
-        <div class="ui-item"></div>
-        <div class="ui-item"></div>
+        <a href="#contact" class="btn btn-primary">Contact Me</a>
       </div>
     </div>
   </div>
 </section>
 
-<section id="about">
+<section id="about" class="fade-in">
   <div class="container">
     <div class="grid-2">
       <div>
@@ -183,7 +175,7 @@ footer { text-align: center; padding: 40px 0; color: var(--text-secondary); font
   </div>
 </section>
 
-<section id="experience">
+<section id="experience" class="fade-in">
   <div class="container">
     <h2>Professional Experience</h2>
     <div class="timeline">
@@ -200,7 +192,7 @@ footer { text-align: center; padding: 40px 0; color: var(--text-secondary); font
   </div>
 </section>
 
-<section id="projects">
+<section id="projects" class="fade-in">
   <div class="container">
     <h2>Projects & Research</h2>
     <div class="grid-2">
@@ -226,7 +218,7 @@ footer { text-align: center; padding: 40px 0; color: var(--text-secondary); font
   </div>
 </section>
 
-<section id="education">
+<section id="education" class="fade-in">
   <div class="container">
     <h2>Education & Technical Skills</h2>
     <div class="grid-2" style="margin-bottom: 32px;">
@@ -272,11 +264,44 @@ footer { text-align: center; padding: 40px 0; color: var(--text-secondary); font
   </div>
 </section>
 
+<section id="contact" class="fade-in">
+  <div class="container">
+    <div class="contact-box">
+      <h2>Let's Connect</h2>
+      <p>I am actively open to new full-time roles and freelance opportunities. Feel free to reach out via email or phone.</p>
+      <div class="contact-links">
+        <a href="mailto:salmansazid70@gmail.com" class="btn btn-primary">salmansazid70@gmail.com</a>
+        <a href="tel:+8801727809737" class="btn btn-outline">+8801727809737</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="container">
     <p>&copy; 2026 Salman Sazid. All rights reserved.</p>
   </div>
 </footer>
+
+<script>
+  // Intersection Observer for scroll animations
+  document.addEventListener("DOMContentLoaded", () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.15, // Trigger when 15% of the element is visible
+      rootMargin: "0px 0px -50px 0px"
+    });
+
+    document.querySelectorAll('.fade-in').forEach(element => {
+      observer.observe(element);
+    });
+  });
+</script>
 
 </body>
 </html>
